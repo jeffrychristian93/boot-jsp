@@ -1,0 +1,5 @@
+GET http://192.168.90.17:8282/api/menu/admin
+#Authorization: Bearer
+Authorization: Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJhZG1pbiIsImF1ZCI6ImV4YW1wbGUiLCJleHAiOjE1MjQ2MjY5MzksImlhdCI6MTUyNDAyMjEzOX0.ENUDD3SrDDA6WzmA4mGG-Y_Z3klyfnXq_kjAJqc-g4wk1NZlzCaAFI2xSXy7-ftvS1-mo3Urg0tFJmqlV6kIVg
+
+###

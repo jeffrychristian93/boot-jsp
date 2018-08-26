@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<!--<!DOCTYPE tiles-definitions PUBLIC-->
+        <!--"-//Apache Software Foundation//DTD Tiles Configuration 2.0//EN"-->
+        <!--"http://tiles.apache.org/dtds/tiles-config_2_0.dtd">-->
+<!DOCTYPE tiles-definitions PUBLIC
+		"-//Apache Software Foundation//DTD Tiles Configuration 3.0//EN"
+		"http://tiles.apache.org/dtds/tiles-config_3_0.dtd">
+<tiles-definitions>
+
+	<definition name="properties">
+		<put-attribute name="title" value="" />
+		<put-attribute name="description" value="Software factory" />
+		<put-attribute name="keywords" value="" />
+		<put-attribute name="robots" value="INDEX,FOLLOW" />
+	</definition>
+	
+	<definition name="auth/*" extends="properties" template="/WEB-INF/layout/auth_layout.jsp">
+		<put-attribute name="header" value="" />
+		<put-attribute name="body" value="/WEB-INF/jsp/auth/{1}.jsp" />
+		<put-attribute name="footer" value="/WEB-INF/jsp/footer/auth_footer.jsp" />
+	</definition>
+	
+	<definition name="main/*" extends="properties" template="/WEB-INF/layout/main_layout.jsp">
+		<put-attribute name="header" value="/WEB-INF/jsp/header/main_header.jsp" />
+		<put-attribute name="body" value="/WEB-INF/jsp/main/{1}.jsp" />
+		<put-attribute name="footer" value="/WEB-INF/jsp/footer/main_footer.jsp" />
+	</definition>
+
+
+	<definition name="*/*/*" extends="properties" template="/WEB-INF/layout/main_layout.jsp">
+		<put-attribute name="header" value="/WEB-INF/jsp/header/main_header.jsp" />
+		<put-attribute name="body" value="/WEB-INF/jsp/{1}/{2}/{3}.jsp" />
+		<put-attribute name="footer" value="/WEB-INF/jsp/footer/main_footer.jsp" />
+	</definition>
+
+</tiles-definitions>
