@@ -1,6 +1,6 @@
-<%@page import="com.pji.common.cms.model.response.LoginResponse"%>
+<%@page import="com.alpha.pos.cms.ui.model.response.LoginResponse"%>
 <%@ include file="../jsp/taglibs.jsp"%>
-<%@ page import="com.pji.common.cms.service.impl.AuthServiceImpl"%>
+<%@ page import="com.alpha.pos.cms.ui.service.impl.AuthServiceImpl"%>
 
 	<!DOCTYPE html>
 	<html lang="en">
@@ -83,7 +83,7 @@ AuthServiceImpl authServiceImpl = new AuthServiceImpl();
 
 LoginResponse login = authServiceImpl.getLoginSession(request);
 request.setAttribute("sessionUserEmail", login.getUser().getEmail());
-request.setAttribute("sessionUserId", login.getUser().getId());
+request.setAttribute("sessionUserId", login.getUser().getUsername());
 //request.setAttribute("sessionParentMenu", login.getParentMenu());
 %>
 
@@ -92,42 +92,42 @@ request.setAttribute("sessionUserId", login.getUser().getId());
 	<!-- Header -->
 	<tiles:insertAttribute name="header" />
 	<!-- End Header -->
-	
+
 	<!-- Page container -->
 	<div class="page-container">
-		
-		
-		
+
+
+
 		<!-- Page content -->
 		<div class="page-content">
-				
+
 			<jsp:include page="../jsp/sidebar/main_sidebar.jsp">
 				<jsp:param name="parent_menu" value="" />
 			</jsp:include>
-			
+
 			<!-- Main content -->
 			<div class="content-wrapper">
 
 				<jsp:include page="../jsp/header/page_header.jsp">
 					<jsp:param name="corporate_name" value="" />
 				</jsp:include>
-				
+
 					<!-- Content area -->
 				<div class="content">
 					<tiles:insertAttribute name="body" />
 					<!-- End Content -->
-					
+
 					<!-- Footer -->
 					<tiles:insertAttribute name="footer" />
 					<!-- End Footer -->
-				</div>	
+				</div>
 				<!-- Content area -->
 			</div>
-				
+
 		</div>
-		
+
 	</div>
-	
+
 
 	<script type="text/javascript">
 		var ctx = "${ctx }";

@@ -1,8 +1,8 @@
-<%@ page import="com.pji.common.cms.model.response.SidebarMenuResponse" %>
-<%@ page import="com.pji.common.cms.service.impl.AuthServiceImpl" %>
+<%@ page import="com.alpha.pos.cms.ui.service.impl.AuthServiceImpl" %>
 <%@ page import="java.util.List" %>
-<%@ page import="com.pji.common.cms.model.response.SidebarMenuBodyResponse" %>
-<%@ page import="com.pji.common.cms.model.response.SidebarSubMenuBodyResponse" %>
+<%@ page import="com.alpha.pos.cms.ui.model.SidebarMenu" %>
+<%@ page import="com.alpha.pos.cms.ui.model.response.MenuAccessResponse" %>
+<%@ page import="java.util.Objects" %>
 <%@ include file="../../jsp/taglibs.jsp"%>
 
 <!-- Main sidebar -->
@@ -50,24 +50,27 @@
 						AuthServiceImpl service = new AuthServiceImpl();
 
 						String pathUrl = (String) service.getSession(request, "mainPathUrl");
-						SidebarMenuResponse listParentMenuResponse =  (SidebarMenuResponse) service.getSession(request, "sessionSidebar");
+						SidebarMenu listParentMenuResponse =  (SidebarMenu) service.getSession(request, "sessionSidebar");
 						String subMenuActive = "";
-						for(SidebarMenuBodyResponse parentMenuResponse : listParentMenuResponse.getBody().getMenus()){
+						for(MenuAccessResponse parentMenuResponse : listParentMenuResponse.getSidebarMenu()){
 					%>
-					<li id="<%=parentMenuResponse.getMenuCode()%>" class="">
-						<a href="#"><i></i> <span><%=parentMenuResponse.getTitle() %></span></a>
+					<li id="<%=parentMenuResponse.getAccessCode()%>" class="">
+						<a href="#"><i></i> <span><%=parentMenuResponse.getAccessName() %></span></a>
 						<ul>
 							<%
-								List<SidebarSubMenuBodyResponse> listSubMenuResponses = parentMenuResponse.getSubMenus();
-								for(SidebarSubMenuBodyResponse subMenuResponse : listSubMenuResponses){
-									if ((request.getContextPath() + subMenuResponse.getUrl()).equals(request.getAttribute("javax.servlet.forward.request_uri"))) {
+								List<MenuAccessResponse> listSubMenuResponses = parentMenuResponse.getSubMenu();
+								if (!Objects.isNull(listSubMenuResponses)) {
+
+								for(MenuAccessResponse subMenuResponse : listSubMenuResponses){
+									if ((request.getContextPath() + subMenuResponse.getPathUrl()).equals(request.getAttribute("javax.servlet.forward.request_uri"))) {
 										subMenuActive = "active";
 									} else {
 										subMenuActive = "";
 									}
 							%>
-							<li class="<%=subMenuActive%>"><a href="<%= request.getContextPath() %>${ctx}<%=subMenuResponse.getUrl()%>"><%=subMenuResponse.getTitle()%></a></li>
+							<li class="<%=subMenuActive%>"><a href="<%= request.getContextPath() %>${ctx}<%=subMenuResponse.getPathUrl()%>"><%=subMenuResponse.getAccessName()%></a></li>
 							<%
+								}
 								}
 							%>
 						</ul>

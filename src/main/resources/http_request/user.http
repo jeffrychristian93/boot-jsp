@@ -1,0 +1,8 @@
+###
+GET http://localhost:8080/core/user
+
+
+
+#Authorization: Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJhZG1pbiIsImF1ZCI6ImV4YW1wbGUiLCJleHAiOjE1MzU3ODk1MDUsImlhdCI6MTUzNTE4NDcwNX0.n78DluxB4MCmfV1hADejKwrY4Gha5ROzA2ONfZrGJCTZcX4xJxmYaUIzUnHDtts1_c6SdNOsxJaShm0uBTz6Ug
+
+###
